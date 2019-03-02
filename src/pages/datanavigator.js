@@ -3,31 +3,21 @@ import DatatablePage from '../components/datatable';
 import { store } from '../redux/store';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import * as DashboardActions from '../redux/actions/dashboardActions';
-import EmailRender, {exampleHtml} from '../components/emailrender';
+import * as GroupingActions from '../redux/actions/groupingActions';
+import EmailRender from '../components/emailrender';
 import Button from 'react-bootstrap/Button'
 
 class DataNavigator extends React.Component{
-  constructor(props){
-    super(props)
-    this.state = { windowOpen:false }
-  }
-  componentWillUnmount(){
-    this.setState({ windowOpen:false})
-  }
-  toggleWindow(){
-    this.setState({windowOpen:!this.state.windowOpen})
-  }
   render(){
-    if (this.state.windowOpen){
-      var emailNode = <EmailRender><div dangerouslySetInnerHTML={{ __html: exampleHtml}} /></EmailRender>
+    if (this.props.windowOpen){
+      var emailNode = <EmailRender><div dangerouslySetInnerHTML={{ __html: this.props.windowContent}} /></EmailRender>
     } else {
       var emailNode = null
     }
 
     return(
       <div>
-        <Button onClick={()=>this.toggleWindow()}>Toggle Email Viewer</Button>
+        <Button onClick={()=>this.props.toggleWindow()}>Toggle Email Viewer</Button>
         <DatatablePage />
         {emailNode}
       </div>
@@ -37,12 +27,13 @@ class DataNavigator extends React.Component{
 
 function mapStateToProps(state) {
   return {
-    activePage: state.dashboard.activePage,
+    windowOpen: state.grouper.windowOpen,
+    windowContent:state.grouper.windowContent
   };
 }
 
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators(DashboardActions, dispatch);
+  return bindActionCreators(GroupingActions, dispatch);
 }
 export default connect(
   mapStateToProps,

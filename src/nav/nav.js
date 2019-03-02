@@ -8,7 +8,7 @@ import NavDropdown from 'react-bootstrap/NavDropdown';
 import Form from 'react-bootstrap/Form';
 import Nav from 'react-bootstrap/Nav';
 import FormControl from 'react-bootstrap/FormControl';
-import { MDBBtn } from "mdbreact";
+import Button from "react-bootstrap/Button";
 
 class NavBar extends Component{
   render(){
@@ -25,7 +25,7 @@ class NavBar extends Component{
           </Nav>
           <Form inline>
             <FormControl type="text" placeholder="Search" className="mr-sm-2" />
-            <MDBBtn color="info">Search</MDBBtn>
+            <Button color="info">Search</Button>
           </Form>
         </Navbar.Collapse>
       </Navbar>
@@ -41,7 +41,7 @@ class DataSourcingDrop extends Component {
         <NavDropdown.Item href="#action/3.2">Data Table Mapping</NavDropdown.Item>
         <NavDropdown.Item onClick={()=>this.props.setPage('DataNavigator')} href="#datanavigator">Data Navigator</NavDropdown.Item>
         <NavDropdown.Divider />
-        <NavDropdown.Item href="#action/3.4">Data Management Preferences</NavDropdown.Item>
+        <NavDropdown.Item onClick={()=>this.props.setPage('Email')}>Data Management Preferences</NavDropdown.Item>
       </NavDropdown>
     )
   }

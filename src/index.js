@@ -8,7 +8,6 @@ import { store, persistor } from "./redux/store";
 import { PersistGate } from 'redux-persist/lib/integration/react';
 import '@fortawesome/fontawesome-free/css/all.min.css';
 import 'bootstrap-css-only/css/bootstrap.min.css';
-import 'mdbreact/dist/css/mdb.css';
 
 class ReduxAppWrapper extends React.Component{
   render(){

@@ -5,7 +5,11 @@ import Button from "react-bootstrap/Button";
   const columns = [
     {
      name: "view",
-     label: "View"
+     label: "View",
+     options: {
+      filter: false,
+      sort: false,
+     }
    },
      {
     name: "name",

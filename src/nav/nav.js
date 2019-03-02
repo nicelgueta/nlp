@@ -41,7 +41,7 @@ class DataSourcingDrop extends Component {
         <NavDropdown.Item href="#action/3.2">Data Table Mapping</NavDropdown.Item>
         <NavDropdown.Item onClick={()=>this.props.setPage('DataNavigator')} href="#datanavigator">Data Navigator</NavDropdown.Item>
         <NavDropdown.Divider />
-        <NavDropdown.Item onClick={()=>this.props.setPage('Email')}>Data Management Preferences</NavDropdown.Item>
+        <NavDropdown.Item>Data Management Preferences</NavDropdown.Item>
       </NavDropdown>
     )
   }

@@ -7,7 +7,7 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import * as DashboardActions from './redux/actions/dashboardActions';
 import DataNavigator from './pages/datanavigator';
-import EmailRender, {exampleHtml} from './components/emailrender';
+
 class App extends Component {
   render() {
     switch (this.props.activePage) {
@@ -17,10 +17,6 @@ class App extends Component {
       }
       case 'Dashboard':{
         var page = <div><p>Dashboard page</p></div>
-        break
-      }
-      case 'Email':{
-        var page = <EmailRender><div dangerouslySetInnerHTML={{ __html: exampleHtml}} /></EmailRender>
         break
       }
     }

@@ -2,7 +2,10 @@
 
 export default function groupingReducer(state={
     windowOpen: false,
-    windowContent:null
+    windowContent:null,
+    groupApiCalling:false,
+    groupApiResponse:null,
+    groupApiError:false
   }, action) {
 
     switch (action.type) {
@@ -12,7 +15,17 @@ export default function groupingReducer(state={
       case "TOGGLE_WINDOW":{
         return {...state, windowOpen:!state.windowOpen}
       }
+      case "CALL_GROUP_API":{
+        return {...state, groupApiCalling:true,groupApiError:false,groupApiResponse:null}
+      }
+      case "SET_GROUP_RESPONSE":{
+        return {...state, groupApiResponse:action.payload,groupApiCalling:false}
+      }
+      case "SET_GROUP_ERROR":{
+        return {...state, groupApiError:true,groupApiCalling:false}
+      }
+      default:{
+        return state
+      }
     }
-
-    return state
 }

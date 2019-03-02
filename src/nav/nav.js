@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { store } from '../redux/store';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import * as DashboardActions from '../redux/actions/dashboardActions';
@@ -16,7 +15,7 @@ class NavBar extends Component{
     console.log(this.props)
     return(
       <Navbar bg="dark" expand="lg" variant="dark">
-        <Navbar.Brand onClick={()=>this.props.setPage('Dashboard')}>WF Data Analysis</Navbar.Brand>
+        <Navbar.Brand onClick={()=>this.props.setPage('Dashboard')}>BAML WF Data Tool</Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="mr-auto">

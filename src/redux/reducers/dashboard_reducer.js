@@ -8,7 +8,8 @@ export default function dashboardReducer(state={
       case "SET_PAGE": {
         return {...state, activePage: action.payload}
       }
+      default:{
+        return state
+      }
     }
-
-    return state
 }

@@ -1,6 +1,5 @@
-import React, { Component } from 'react';
+import React from 'react';
 import ReactDOM from 'react-dom';
-import { store } from '../redux/store';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import * as GroupingActions from '../redux/actions/groupingActions';

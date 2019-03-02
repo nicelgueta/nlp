@@ -11,3 +11,21 @@ export function toggleWindow(){
     type: 'TOGGLE_WINDOW'
   }
 }
+export function callGroupApi(){
+  return {
+    type: 'CALL_GROUP_API'
+  }
+}
+export function setGroupResponse(response){
+  return {
+    type: 'SET_GROUP_RESPONSE',
+    payload: response
+  }
+}
+
+export function setGroupError(body){
+  return {
+    type: 'SET_GROUP_ERROR',
+    payload: body
+  }
+}

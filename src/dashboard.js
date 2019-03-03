@@ -22,7 +22,6 @@ class App extends Component {
         page = <div><p>Dashboard page</p></div>
       }
     }
-    console.log(this.props)
     return (
       <div className="App">
         <NavBar />

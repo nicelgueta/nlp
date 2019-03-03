@@ -27,3 +27,29 @@ code {
   background-color: #ed8200;
   border: 1px solid #ed8200;
 }
+
+.customSpinnerDiv{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  left: 50%;
+  top: 50%
+}
+.sectionContainer{
+  display: flex;
+  flex-direction: column;
+  align-content: stretch;
+}
+.sectionRow{
+  display: flex;
+  flex-direction: row;
+  align-content: stretch;
+}
+.sectionElement{
+  flex-grow: 1;
+  align-content: stretch;
+  justify-content: center;
+  align-items: center;
+  min-height: 100%;
+}

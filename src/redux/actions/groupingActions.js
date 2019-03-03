@@ -29,3 +29,10 @@ export function setGroupError(body){
     payload: body
   }
 }
+
+export function setUseCaseTitle(title){
+  return {
+    type: 'SET_USE_CASE_TITLE',
+    payload: title
+  }
+}

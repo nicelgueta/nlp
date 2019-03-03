@@ -24,7 +24,13 @@ function getColumns(data){
 
 class DatatablePage extends React.Component{
   renderSpinner(){
-    return <Spinner name="cube-grid" />
+    return (
+        <div className="customSpinnerDiv">
+          <div><Spinner name="pacman" color="blue" /></div>
+          <br/>
+          <div><Spinner name="three-bounce" color="blue" /></div>
+      </div>
+    )
   }
   addViewButtonToData(data){
     var newData = [];
@@ -64,6 +70,7 @@ function mapStateToProps(state) {
   return {
     groupApiCalling:state.grouper.groupApiCalling,
     groupApiResponse:state.grouper.groupApiResponse,
+    useCaseTitle:state.grouper.useCaseTitle,
   };
 }
 

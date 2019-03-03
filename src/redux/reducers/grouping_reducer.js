@@ -5,7 +5,8 @@ export default function groupingReducer(state={
     windowContent:null,
     groupApiCalling:false,
     groupApiResponse:null,
-    groupApiError:false
+    groupApiError:false,
+    useCaseTitle:''
   }, action) {
 
     switch (action.type) {
@@ -23,6 +24,9 @@ export default function groupingReducer(state={
       }
       case "SET_GROUP_ERROR":{
         return {...state, groupApiError:true,groupApiCalling:false}
+      }
+      case "SET_USE_CASE_TITLE":{
+        return {...state,useCaseTitle:action.payload}
       }
       default:{
         return state

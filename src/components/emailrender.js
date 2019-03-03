@@ -6,6 +6,9 @@ import * as GroupingActions from '../redux/actions/groupingActions';
 
 
 class EmailRender extends React.PureComponent {
+  toggleWin(){
+    this.props.toggleWindow()
+  }
   constructor(props) {
     super(props);
     // STEP 1: create a container <div>
@@ -21,9 +24,14 @@ class EmailRender extends React.PureComponent {
   componentDidMount() {
     // STEP 3: open a new browser window and store a reference to it
     this.externalWindow = window.open('', '', 'width=800,height=600,left=200,top=200');
-
     // STEP 4: append the container <div> (that has props.children appended to it) to the body of the new window
     this.externalWindow.document.body.appendChild(this.containerEl);
+    this.externalWindow.onbeforeunload = closingCode;
+    this.externalWindow.toggleWin = this.toggleWin.bind(this)
+    function closingCode(){
+       this.toggleWin()
+       return null;
+    }
   }
 
   componentWillUnmount() {
@@ -36,5 +44,6 @@ function mapDispatchToProps(dispatch) {
   return bindActionCreators(GroupingActions, dispatch);
 }
 export default connect(
+  null,
   mapDispatchToProps
 )(EmailRender);

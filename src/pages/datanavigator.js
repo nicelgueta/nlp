@@ -17,15 +17,16 @@ class DataNavigator extends React.Component{
   }
   render(){
     var emailNode;
-    var viewerStatus;
+    var openButton;
     var toggleColour;
     if (this.props.windowOpen){
       emailNode = <EmailRender><div dangerouslySetInnerHTML={{ __html: this.props.windowContent}} /></EmailRender>
+      openButton = <Button disabled variant="outline-secondary" >Email Viewer open</Button>
     } else {
       emailNode = null
+      openButton = <Button variant="outline-success" onClick={()=>this.props.toggleWindow()}>Open Email Viewer</Button>
     }
-    viewerStatus = this.props.windowOpen ? "Close" : "Open";
-    toggleColour = this.props.windowOpen ? "danger" : "success";
+
     return(
       <div className="sectionContainer">
         <div className="sectionRow">
@@ -40,8 +41,8 @@ class DataNavigator extends React.Component{
                   <Button variant="outline-primary" onClick={()=>this.getData()}>Get Data</Button>
                 </Card.Link>
                 <Card.Link>
-                  <Button variant={"outline-"+toggleColour} onClick={()=>this.props.toggleWindow()}>{viewerStatus+' Email Viewer'}</Button>
-                </Card.Link>  
+                  {openButton}
+                </Card.Link>
               </Card.Footer>
             </Card>
           </div>

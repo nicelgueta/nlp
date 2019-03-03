@@ -7,6 +7,7 @@ import * as DashboardActions from './redux/actions/dashboardActions';
 import DataNavigator from './pages/datanavigator';
 import DataSourcing from './pages/datasourcing';
 import AdHocCsvViewer from './pages/csvviewer';
+import Example from './example';
 
 class App extends Component {
   render() {
@@ -25,7 +26,7 @@ class App extends Component {
         break
       }
       case 'CsvViewer':{
-        page = <AdHocCsvViewer />
+        page = <Example />
         break
       }
       default:{

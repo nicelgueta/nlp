@@ -4,9 +4,12 @@ import Button from "react-bootstrap/Button";
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import * as GroupingActions from '../redux/actions/groupingActions';
+import TextField from '@material-ui/core/TextField'
+
   const Spinner = require('react-spinkit');
   const options = {
     filterType: 'multiselect',
+    responsive: 'scroll',
   };
 
 function getColumns(data){
@@ -18,7 +21,24 @@ function getColumns(data){
     filter: col === 'htmlbody' ? false : true,
     sort: col === 'htmlbody' ? false : true,
    }
- }})
+ }});
+  //add grouping column
+  cols.push({
+    name: "Grouping",
+    label:'grouping',
+    options: {
+      filter: true,
+      customBodyRender: (value, tableMeta, updateValue) => {
+
+        return (<TextField
+                  value={value}
+                  placeholder={'Assign Group'}
+                  onChange={event => {
+                    updateValue(event.target.value);
+                  }}
+                  />)
+      }
+    }})
     return cols
 }
 
@@ -33,17 +53,20 @@ class DatatablePage extends React.Component{
     )
   }
   addViewButtonToData(data){
+    //adding grouping field and view button
     var newData = [];
     for(let i=0;i<data.length;i++){
       let obj = data[i];
-      newData.push({...obj,htmlbody:<Button color="info" onClick={()=>this.props.setViewerContent(obj.htmlbody)}>View</Button>})
+      newData.push({...obj,htmlbody:<Button color="info" onClick={()=>this.props.setViewerContent(obj.htmlbody)}>View</Button>,Grouping:''})
     }
     return newData
   }
   renderDataTable(){
     var data = this.props.groupApiResponse;
     var cols = getColumns(data)
+    console.log(cols)
     data = this.addViewButtonToData(data);
+    console.log(data)
     return (<MUIDataTable
       title={this.props.useCaseTitle}
       data={data}

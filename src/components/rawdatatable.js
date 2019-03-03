@@ -5,6 +5,7 @@ import MUIDataTable from "mui-datatables";
   const Spinner = require('react-spinkit');
   const options = {
     filterType: 'multiselect',
+    responsive: 'scroll'
   };
 
 export default class RawDataTable extends React.Component{

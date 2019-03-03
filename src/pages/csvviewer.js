@@ -10,6 +10,7 @@ import * as GroupingActions from '../redux/actions/groupingActions';
 import RawDataTable from '../components/rawdatatable';
 
 const axios = require('axios');
+const Spinner = require('react-spinkit');
 
 function handleFiles() {
   // Check for the various File API support.
@@ -38,7 +39,16 @@ function getColumns(data,colsToView){
 class AdHocCsvViewer extends React.Component{
   constructor(props){
     super(props)
-    this.state = {ready:false,csvData:null,cols:null,title:null,uploaded:false}
+    this.state = {ready:false,csvData:null,cols:null,title:null,uploaded:false,calling:false}
+  }
+  renderSpinner(){
+    return (
+        <div className="customSpinnerDiv">
+          <div><Spinner name="pacman" color="blue" /></div>
+          <br/>
+          <div><Spinner name="three-bounce" color="blue" /></div>
+      </div>
+    )
   }
   addViewButtonToData(data,field){
     var newData = [];
@@ -59,16 +69,17 @@ class AdHocCsvViewer extends React.Component{
       for (let i=0;i<newValues.length;i++){
         json = this.addViewButtonToData(json,newValues[i])
       }
-    this.setState({ready:true,csvData:json,cols:cols,title:document.getElementById('fileInput').innerHTML,uploaded:true})
+    this.setState({ready:true,csvData:json,cols:cols,title:document.getElementById('fileInput').innerHTML,uploaded:true,calling:false})
   }
   uploadCsv(){
     var formData = new FormData();
     formData.append('csvFile',document.getElementById('customFile').files[0]);
+    this.state = {ready:false,csvData:null,cols:null,title:null,uploaded:false,calling:true}
     axios.post('http://127.0.0.1:5000/getcsvjson',formData,{headers:{'Content-Type': 'multipart/form-data'}})
     .then(function (response) {
       // handle success
       console.log(response);
-      this.setState({ready:false,csvData:JSON.parse(response.data),cols:null,title:document.getElementById('fileInput').innerHTML,uploaded:true})
+      this.setState({ready:false,csvData:JSON.parse(response.data),cols:null,title:document.getElementById('fileInput').innerHTML,uploaded:true,calling:false})
     }.bind(this))
     .catch(function (error) {
       // handle error
@@ -113,8 +124,8 @@ class AdHocCsvViewer extends React.Component{
       emailNode = null
       openButton = <Button block variant="outline-success" onClick={()=>this.props.toggleWindow()}>Open HTML Viewer</Button>
     }
-    var choiceRender = this.state.uploaded ? this.renderColumnChoice() : null ;
-    var dataTable = this.state.ready ? <RawDataTable data={this.state.csvData} cols={this.state.cols} title={this.state.title}/> : 'No data to display';
+    var choiceRender = this.state.calling ? this.renderSpinner() : this.state.uploaded ? this.renderColumnChoice() : null ;
+    var dataTable = this.state.ready ? <RawDataTable data={this.state.csvData} cols={this.state.cols} title={this.state.title}/> :  'Awaiting column configuration';
     return(
       <div className="sectionContainer">
         <div className="sectionRow">

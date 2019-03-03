@@ -6,7 +6,7 @@ import { connect } from 'react-redux';
 import * as GroupingActions from '../redux/actions/groupingActions';
   const Spinner = require('react-spinkit');
   const options = {
-    filterType: 'checkbox',
+    filterType: 'multiselect',
   };
 
 function getColumns(data){
@@ -15,8 +15,8 @@ function getColumns(data){
    name: col,
    label: col.toLowerCase(),
    options: {
-    filter: true,
-    sort: true,
+    filter: col === 'htmlbody' ? false : true,
+    sort: col === 'htmlbody' ? false : true,
    }
  }})
     return cols
@@ -45,7 +45,7 @@ class DatatablePage extends React.Component{
     var cols = getColumns(data)
     data = this.addViewButtonToData(data);
     return (<MUIDataTable
-      title={"FX Emails"}
+      title={this.props.useCaseTitle}
       data={data}
       columns={cols}
       options={options}

@@ -45,6 +45,7 @@ code {
   display: flex;
   flex-direction: row;
   align-content: stretch;
+  justify-content: center;
 }
 .sectionElement{
   flex-grow: 1;
@@ -52,4 +53,5 @@ code {
   justify-content: center;
   align-items: center;
   min-height: 100%;
+  padding-left: 1%;
 }

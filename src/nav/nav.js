@@ -27,8 +27,8 @@ class DataSourcingDrop extends Component {
   render(){
     return(
       <NavDropdown title="Data" id="data-source-nav-dropdown">
-        <NavDropdown.Item href="#action/3.1">Use Cases</NavDropdown.Item>
-        <NavDropdown.Item href="#action/3.2">Data Table Mapping</NavDropdown.Item>
+        <NavDropdown.Item onClick={()=>this.props.setPage('CsvViewer')}>CSV Viewer</NavDropdown.Item>
+        <NavDropdown.Item onClick={()=>this.props.setPage('DataSourcing')}>Data Table Mapping</NavDropdown.Item>
       </NavDropdown>
     )
   }

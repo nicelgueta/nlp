@@ -5,6 +5,8 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import * as DashboardActions from './redux/actions/dashboardActions';
 import DataNavigator from './pages/datanavigator';
+import DataSourcing from './pages/datasourcing';
+import AdHocCsvViewer from './pages/csvviewer';
 
 class App extends Component {
   render() {
@@ -16,6 +18,14 @@ class App extends Component {
       }
       case 'Dashboard':{
         page = <div><p>Dashboard page</p></div>
+        break
+      }
+      case 'DataSourcing':{
+        page = <DataSourcing />
+        break
+      }
+      case 'CsvViewer':{
+        page = <AdHocCsvViewer />
         break
       }
       default:{

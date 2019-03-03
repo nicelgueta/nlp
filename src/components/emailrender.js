@@ -26,7 +26,7 @@ class EmailRender extends React.PureComponent {
     this.externalWindow = window.open('', '', 'width=800,height=600,left=200,top=200');
     // STEP 4: append the container <div> (that has props.children appended to it) to the body of the new window
     this.externalWindow.document.body.appendChild(this.containerEl);
-    this.externalWindow.document.title = "BAML WF Data Tool - Email Viewer"
+    this.externalWindow.document.title = "Grouping Tool - Email Viewer"
     this.externalWindow.onbeforeunload = closingCode;
     this.externalWindow.toggleWin = this.toggleWin.bind(this)
     function closingCode(){

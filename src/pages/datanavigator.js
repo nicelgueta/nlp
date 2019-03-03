@@ -13,18 +13,18 @@ class DataNavigator extends React.Component{
 
   getData(){
     this.props.callGroupApi()
-    fetch('http://127.0.0.1:5000/get2').then((response)=>{return response.json()}).then(myJson=>{this.props.setGroupResponse(myJson)})
+    fetch('http://127.0.0.1:5000/getd').then((response)=>{return response.json()}).then(myJson=>{this.props.setGroupResponse(myJson)})
+    this.props.setUseCaseTitle('FX Emails')
   }
   render(){
     var emailNode;
     var openButton;
-    var toggleColour;
     if (this.props.windowOpen){
       emailNode = <EmailRender><div dangerouslySetInnerHTML={{ __html: this.props.windowContent}} /></EmailRender>
-      openButton = <Button disabled variant="outline-secondary" >Email Viewer open</Button>
+      openButton = <Button block disabled variant="outline-secondary" >Email Viewer open</Button>
     } else {
       emailNode = null
-      openButton = <Button variant="outline-success" onClick={()=>this.props.toggleWindow()}>Open Email Viewer</Button>
+      openButton = <Button block variant="outline-success" onClick={()=>this.props.toggleWindow()}>Open Email Viewer</Button>
     }
 
     return(
@@ -38,10 +38,16 @@ class DataNavigator extends React.Component{
               </Card.Body>
               <Card.Footer>
                 <Card.Link>
-                  <Button variant="outline-primary" onClick={()=>this.getData()}>Get Data</Button>
+                  <div className="sectionRow">
+                    <div className="sectionElement">
+                      <Button block variant="outline-primary" onClick={()=>this.getData()}>Get Data</Button>
+                    </div>
+                    <div className="sectionElement">
+                      {openButton}
+                    </div>
+                  </div>
                 </Card.Link>
                 <Card.Link>
-                  {openButton}
                 </Card.Link>
               </Card.Footer>
             </Card>
